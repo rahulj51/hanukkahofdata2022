@@ -1,0 +1,30 @@
+services:
+
+  # dbt models. wait for db to be available and ingestion to be completed
+  dbt :
+    build: ./solutions
+    depends_on:
+      - db
+      - ingestion
+    command: ["./wait-for-postgres.sh", "db:5432", "--", "/bin/sh", "run.sh"]
+    ports:
+      - '8080:8080'
+
+
+  # ingestion. depends on database
+  ingestion :
+    build: ./ingestion/
+    depends_on:
+        db:
+          condition: service_healthy
+    command: ["./wait-for-postgres.sh", "db:5432", "--", "python", "load_to_postgres.py"]
+  # database postgres
+  db:
+    build: ./database/
+    ports:
+      - '5432:5432'
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
