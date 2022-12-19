@@ -4,6 +4,7 @@
     )
 }}
 
+--split name into an array of strings separated by whitespace
 with name_array as (
     select
         customerid,
@@ -13,6 +14,7 @@ with name_array as (
     from {{ ref('customers') }}
 ),
 
+--get the initials
 initials as (
     select
         customerid,
@@ -26,6 +28,7 @@ initials as (
 
 ),
 
+--filter those that have 'JD' as their initials
 candidates as (
     select
         customerid,
@@ -35,6 +38,7 @@ candidates as (
     where array_to_string(initials, '') = 'JD'
 )
 
+-- filter those that purchased coffee or bagel in 2017
 select
     c.customerid,
     c.name,
@@ -48,3 +52,6 @@ from {{ ref('orders') }} o
 where date_part('year', ordered_at) = 2017
 and lower(description) ~* 'coffee|bagel'
 group by c.customerid, c.name, c.phone, o.orderid
+
+
+--manually inspect to find the specific customer. Some product names can be ambigious
