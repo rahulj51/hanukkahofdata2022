@@ -9,9 +9,9 @@ and locally hosted.
 
 #### Docker
 The project is dockerized. 
-  - Run `docker compse build` to build the images. This will take a while
-  - Run `docker compuse up` to create the database and run the models.
-  - Connect a sql client to Postgres on localhost:5432 to query the data
+  - Run `docker compose build` to build the images. This will take a while
+  - Run `docker compose up` to create the database and run the models.
+  - Connect any sql client to Postgres on localhost:5432 to query the data
   - Open `http://localhost:8080` in a web browser to view the dbt docs and lineage
 
 
