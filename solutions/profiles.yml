@@ -1,0 +1,14 @@
+config:
+  send_anonymous_usage_stats: false
+hanukkah:
+  outputs:
+   dev:
+     type: postgres
+     host: "{{ env_var('DB_HOST', 'db') }}"
+     port: "{{ env_var('DB_PORT', '5432') | int }}"
+     database: hanukkah
+     schema: public
+     user: noah
+     password: secret
+     thread: 5
+  target: dev

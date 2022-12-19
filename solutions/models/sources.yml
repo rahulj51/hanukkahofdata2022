@@ -1,0 +1,13 @@
+version: 2
+sources:
+  - name: raw
+    schema: raw
+    tables:
+      - name: customers
+        identifier: noahs_customers
+      - name: products
+        identifier: noahs_products
+      - name: orders
+        identifier: noahs_orders
+      - name: orders_items
+        identifier: noahs_orders_items

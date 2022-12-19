@@ -1,0 +1,4 @@
+FROM postgres:latest
+ENV POSTGRES_USER=noah
+ENV POSTGRES_PASSWORD=secret
+ENV POSTGRES_DB=hanukkah
