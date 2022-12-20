@@ -9,6 +9,6 @@ select
     name,
     address,
     citystatezip,
-    date(birthdate),
+    date(birthdate) as birthdate,
     phone
 from {{ source('raw', 'customers') }}
