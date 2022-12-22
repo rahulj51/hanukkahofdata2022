@@ -1,2 +1,2 @@
-*.sh linguist-detectable=false
-*.sql linguist-language=PLpgSQL
+**/*.sh linguist-detectable=false
+**/*.sql linguist-language=PLpgSQL
