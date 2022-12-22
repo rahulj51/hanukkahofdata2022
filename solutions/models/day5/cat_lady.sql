@@ -1,11 +1,10 @@
 {{
     config (
-        schema = "day4"
+        schema = "day5"
     )
 }}
 
--- all bakery products start with BKY
-{% set bakery_sku = 'BKY' %}
+{% set pet_sku = 'PET' %}
 
 select
     c.customerid,
@@ -16,7 +15,7 @@ join {{ ref('orders') }} o on c.customerid =o.customerid
 join {{ ref('orders_items') }} oi on o.orderid = oi.orderid
 join {{ ref('products') }} p on oi.sku = p.sku
 
-where date_part('hour', o.ordered_at) < 5 --pasteries were bought before 5:00
-and oi.sku like '{{ bakery_sku }}%'
+where lower(citystatezip) like '%queens village%' -- lives in queens village
+and oi.sku like '{{ pet_sku }}%' --has cats so buys cat food
 group by 1,2,3
 order by count(*) desc limit 1 -- max active
