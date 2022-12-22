@@ -1,2 +1,2 @@
-**/*.sh linguist-detectable=false
-**/*.sql linguist-language=SQL
+*.sh linguist-detectable=false
+*.sql linguist-detectable=true
