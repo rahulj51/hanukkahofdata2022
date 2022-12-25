@@ -18,6 +18,17 @@ services:
         db:
           condition: service_healthy
     command: ["./wait-for-postgres.sh", "db:5432", "--", "python", "load_to_postgres.py"]
+
+
+  # db client
+  pgweb:
+    build: ./pgweb/
+    depends_on:
+        db:
+          condition: service_healthy
+    ports:
+      - '8081:8081'
+
   # database postgres
   db:
     build: ./database/
